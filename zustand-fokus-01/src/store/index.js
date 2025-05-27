@@ -30,5 +30,5 @@ export const useCronometroStore = create((set) => ({
             modoCronometro: novoModo,
             tempoEmSegundos: novoModo.tempoInicialEmSegundos,
         });
-    },]
+    },
 }))
