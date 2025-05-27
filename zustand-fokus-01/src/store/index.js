@@ -31,4 +31,30 @@ export const useCronometroStore = create((set) => ({
             tempoEmSegundos: novoModo.tempoInicialEmSegundos,
         });
     },
+    intervaloId: null,
+    iniciarCronômetro: () => {
+        const novoId = setInterval(computarContagemRegressiva, 1000)
+
+        set({ intervaloId: novoId });
+    }
+
 }))
+
+function computarContagemRegressiva() {
+    const tempoAtual = useCronometroStore.getState().tempoEmSegundos;
+    if (tempoAtual > 0) {
+        decrementarTempo();
+    } else {
+        redefinirTempo()
+    }
+}
+
+function decrementarTempo() {
+    useCronometroStore.setState((estado) => ({ tempoEmSegundos: estado.tempoEmSegundos - 1 }))
+}
+
+function redefinirTempo() {
+    useCronometroStore.setState((estado) => ({
+        tempoEmSegundos: estado.modoCronometro.tempoInicialEmSegundos,
+    }));
+}
