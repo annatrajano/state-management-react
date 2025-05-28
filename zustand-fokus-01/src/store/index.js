@@ -32,7 +32,7 @@ export const useCronometroStore = create((set) => ({
         });
     },
     intervaloId: null,
-    iniciarCronômetro: () => {
+    iniciarCronometro: () => {
         const novoId = setInterval(computarContagemRegressiva, 1000)
 
         set({ intervaloId: novoId });
